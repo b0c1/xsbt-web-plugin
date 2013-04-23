@@ -21,7 +21,7 @@ object PluginKeys extends Plugin {
 	lazy val discoveredContexts = TaskKey[Seq[String]]("discovered-contexts")
 	lazy val reload = InputKey[Unit]("reload")
 	lazy val stop = TaskKey[Unit]("stop")
-	lazy val customConfiguration = SettingKey[Boolean]("custom-configuration")
+	lazy val customConfiguration = SettingKey[Boolean]("only-custom-configuration")
 	lazy val configurationFiles = SettingKey[Seq[File]]("configuration-files")
 	lazy val configurationXml = SettingKey[NodeSeq]("configuration-xml")
 	lazy val webappResources = SettingKey[Seq[File]]("webapp-resources")
@@ -32,4 +32,5 @@ object PluginKeys extends Plugin {
 	lazy val scanInterval = SettingKey[Int]("scan-interval")
 	lazy val env = SettingKey[Option[File]]("env")
 	lazy val deployment = TaskKey[Deployment]("deployment")
+  lazy val annotationSupport = SettingKey[Boolean]("annotation-support")
 }

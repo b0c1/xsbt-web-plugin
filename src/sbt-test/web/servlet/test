@@ -1,11 +1,13 @@
-> ++ 2.8.0
+> ++ 2.9.2
 
 $ copy-file changes/MyServlet1.scala src/main/scala/test/MyServlet.scala
+$ copy-file changes/web2.xml src/main/webapp/WEB-INF/web.xml
 > update
 > container:start
 > check-page Hello, Scala!
 
 $ copy-file changes/MyServlet2.scala src/main/scala/test/MyServlet.scala
+$ copy-file changes/web2.xml src/main/webapp/WEB-INF/web.xml
 
 > compile
 > container:reload /
@@ -14,17 +16,18 @@ $ copy-file changes/MyServlet2.scala src/main/scala/test/MyServlet.scala
 > container:start
 -> check-page Hello World 2!
 
-
 # test that it works with Jetty 7 support
 $ touch jetty7.2
 > reload
 
 $ copy-file changes/MyServlet1.scala src/main/scala/test/MyServlet.scala
+$ copy-file changes/web2.xml src/main/webapp/WEB-INF/web.xml
 > update
 > container:start
 > check-page Hello, Scala!
 
 $ copy-file changes/MyServlet2.scala src/main/scala/test/MyServlet.scala
+$ copy-file changes/web2.xml src/main/webapp/WEB-INF/web.xml
 
 > compile
 > container:reload /
@@ -36,15 +39,17 @@ $ delete jetty7.2
 
 
 # test that it works with Jetty 7 support
-$ touch jetty7.3
+$ touch jetty7.5
 > reload
 
 $ copy-file changes/MyServlet1.scala src/main/scala/test/MyServlet.scala
+$ copy-file changes/web2.xml src/main/webapp/WEB-INF/web.xml
 > update
 > container:start
 > check-page Hello, Scala!
 
 $ copy-file changes/MyServlet2.scala src/main/scala/test/MyServlet.scala
+$ copy-file changes/web2.xml src/main/webapp/WEB-INF/web.xml
 
 > compile
 > container:reload /
@@ -52,3 +57,31 @@ $ copy-file changes/MyServlet2.scala src/main/scala/test/MyServlet.scala
 
 > container:stop
 -> check-page Hello World 2!
+$ delete jetty7.5
+
+
+# test that it works with Jetty 8 support with servlet 3.0
+$ touch jetty8
+> reload
+
+$ copy-file changes/MyServlet3.scala src/main/scala/test/MyServlet.scala
+$ copy-file changes/web3.xml src/main/webapp/WEB-INF/web.xml
+
+> update
+> container:start
+> check-page Hello, Scala 3!
+
+> container:stop
+-> check-page Hello World 3!
+
+$ copy-file changes/MyServlet4.scala src/main/scala/test/MyServlet.scala
+$ copy-file changes/web3.xml src/main/webapp/WEB-INF/web.xml
+
+> compile
+> container:start
+> check-page Hello, Scala 4!
+
+> container:stop
+-> check-page Hello World 4!
+
+
